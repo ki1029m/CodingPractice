@@ -1,9 +1,32 @@
 import java.io.*;
 import java.util.*;
 
+
+
 public class Main {
-	static int N;
-	static int M;
+	static int N,M;
+	static int[] arr;
+	
+	static void recursive(int depth, int[] result, boolean[] visit) {
+		//basis part
+		if(depth == M) {
+			for(int i=0; i<M; i++) {
+				System.out.print(result[i]+" ");
+			}
+			System.out.println();
+			return;
+		}
+		
+		//inductive part
+		for(int i=0; i<N; i++) {
+			if(!visit[i]) {
+				result[depth] = arr[i];
+				visit[i] = true;
+				recursive(depth+1, result, visit);
+				visit[i] = false;
+			}
+		}
+	}
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -11,36 +34,16 @@ public class Main {
 		N = Integer.parseInt(st.nextToken());
 		M = Integer.parseInt(st.nextToken());
 		
-		int[] arr = new int[N];
+		arr = new int[N];
+		int[] result = new int[M];
+		boolean[] visit = new boolean[N];
+		
 		for(int i=0; i<N; i++) {
-			arr[i] = i+1;
+			arr[i]=i+1;
 		}
 		
-		recursive(arr, new boolean[N], new int[M], 0);
+		
+		recursive(0, result, visit);
 	}
-	
-	static void recursive(int[] arr, boolean[] v, int[]result, int depth) {
-		//basis part
-		if(depth == M) {
-			for(int i=0; i<M; i++) {
-				System.out.print(result[i]);
-				if(i != M-1) {
-					System.out.print(" ");
-				}
-			}
-			System.out.println();
-			return;
-		}
 
-		//inductive part
-		for(int i=0; i<N; i++) {
-			if(v[i]==false) {
-				v[i] = true;
-				result[depth] = arr[i];
-				recursive(arr, v, result, depth+1);
-				v[i] = false;
-			}
-		}
-		
-	}
 }
