@@ -13,32 +13,29 @@ public class Solution {
 			int N = Integer.parseInt(st.nextToken());
 			int M = Integer.parseInt(st.nextToken());
 			
-			int[][] arr = new int[N][N];
-			for(int i=0; i<N; i++) {
+			int[][] arr = new int[N+1][N+1];
+			int[][] prefix = new int[N+1][N+1];
+			for(int i=1; i<=N; i++) {
 				st = new StringTokenizer(br.readLine());
-				for(int j=0; j<N; j++) {
+				for(int j=1; j<=N; j++) {
 					arr[i][j] = Integer.parseInt(st.nextToken()); 
+					prefix[i][j] = arr[i][j]
+									+ prefix[i-1][j]
+									+ prefix[i][j-1]
+									- prefix[i-1][j-1];
 				}
 			}
 			
 			
 			int result = Integer.MIN_VALUE;
-			for(int i=0; i<N-M+1; i++) {
-				for(int j=0; j<N-M+1; j++) {
-					int sum=0;
-					for(int k=i; k<i+M; k++) {
-						for(int l=j; l<j+M; l++) {
-							sum+=arr[k][l];
-						}
-					}
+			for(int i=M; i<=N; i++) {
+				for(int j=M; j<=N; j++) {
+					int sum = prefix[i][j]-prefix[i-M][j]-prefix[i][j-M]+prefix[i-M][j-M];
 					result = Math.max(result, sum);
 				}
 			}
 			
 			System.out.println("#"+t+" "+result);
 		}
-		
-		
 	}
-
 }
