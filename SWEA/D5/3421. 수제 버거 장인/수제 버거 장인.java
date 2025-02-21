@@ -14,7 +14,14 @@ public class Solution {
 
 	static void powerSet(int depth, int state) {
 		
-		
+		/*
+		//최적화 하려면 밖으로 꺼내서 가지치기
+		for(Ingredient i : q) {
+			if( (state & (1<<(i.num1-1)))!=0 && (state & (1<<(i.num2-1)))!=0 ) {
+				return;
+			}
+		}
+		*/
 		
 		if(depth==N) {
 			for(Ingredient i : q) {
