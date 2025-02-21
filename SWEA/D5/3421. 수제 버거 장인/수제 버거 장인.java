@@ -14,14 +14,14 @@ public class Solution {
 
 	static void powerSet(int depth, int state) {
 		
-		for(Ingredient i : q) {
-			if( (state & (1<<(i.num1-1)))!=0 && (state & (1<<(i.num2-1)))!=0 ) {
-				return;
-			}
-		}
+		
 		
 		if(depth==N) {
-			
+			for(Ingredient i : q) {
+				if( (state & (1<<(i.num1-1)))!=0 && (state & (1<<(i.num2-1)))!=0 ) {
+					return;
+				}
+			}
 			result++;
 			return;
 		}
