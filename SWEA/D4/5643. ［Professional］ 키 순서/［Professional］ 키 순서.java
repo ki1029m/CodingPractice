@@ -4,7 +4,6 @@ import java.util.*;
 public class Solution {
 	
 	static int[][] arr;
-	static int[][] test;
 	static int N,M, result;
 	static boolean isAble;
 	
