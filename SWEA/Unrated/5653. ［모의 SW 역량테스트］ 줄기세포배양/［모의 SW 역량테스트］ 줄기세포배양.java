@@ -25,8 +25,8 @@ public class Solution {
         }
     }
 
-    static int[] dx = {-1, 0, 1, 0};
-    static int[] dy = {0, 1, 0, -1};
+    static int[] dx = {-1,0,1,0};
+    static int[] dy = {0,1,0,-1};
     static int SIZE = 700;
 
     public static void main(String[] args) throws IOException {
@@ -59,12 +59,12 @@ public class Solution {
                 }
             }
 
-            for (int time = 1; time <= K; time++) {
+            for (int time=1; time<=K; time++) {
             	//활성화
-                int size = inactive.size();
-                for (int i = 0; i < size; i++) {
+            	int size = inactive.size();
+                for (int i=0; i<size; i++) {
                     Cell c = inactive.poll();
-                    if (time - c.time == c.life) {
+                    if (time-c.time == c.life) {
                         active.offer(new Cell(c.x, c.y, c.life, time, true));
                     } else {
                         inactive.offer(c);
@@ -74,7 +74,7 @@ public class Solution {
                 //번식
                 PriorityQueue<Cell> newCells = new PriorityQueue<>();
                 size = active.size();
-                for (int i = 0; i < size; i++) {
+                for (int i=0; i<size; i++) {
                     Cell cell = active.poll();
                     if (time - cell.time == 1) {
                         for (int d = 0; d < 4; d++) {
@@ -90,12 +90,12 @@ public class Solution {
                     }
                 }
 
-                // 우선순위 큐에서 높은것부터 채우기
+                //큐에서 높은것부터 채우기
                 while (!newCells.isEmpty()) {
-                    Cell c = newCells.poll();
-                    if (!visited[c.x][c.y]) {
-                        visited[c.x][c.y] = true;
-                        inactive.offer(c);
+                    Cell cell = newCells.poll();
+                    if (!visited[cell.x][cell.y]) {
+                        visited[cell.x][cell.y] = true;
+                        inactive.offer(cell);
                     }
                 }
             }
