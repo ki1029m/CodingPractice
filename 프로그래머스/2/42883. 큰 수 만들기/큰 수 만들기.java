@@ -12,7 +12,8 @@ class Solution {
             if(i==number.length()-1 || sb.charAt(i)<sb.charAt(i+1)){
                 sb.deleteCharAt(i);
                 count++;
-                if(i>0)i--;
+                //첫번째 삭제하는 경우 예외 발생 가능하므로 조건을 달아야 함
+                if(i>0)i--; 
             }else{
                 i++;
             }
