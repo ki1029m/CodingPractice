@@ -1,4 +1,5 @@
 class Solution {
+    //Integer.bitCount() 쓰면 더욱 수월
     
     static int result = Integer.MAX_VALUE;
     
