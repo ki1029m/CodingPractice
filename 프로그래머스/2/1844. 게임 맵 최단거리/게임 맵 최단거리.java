@@ -53,7 +53,6 @@ class Solution {
                 if(!(0<=nx&&nx<n && 0<=ny&&ny<m)) continue;
                 if(visit[nx][ny]) continue;
                 if(arr[nx][ny] == 0) continue;
-                if(p.cnt > m*n ) continue;
 
                 visit[nx][ny] = true;
                 q.add(new Pos(nx,ny,p.cnt+1));
